@@ -113,11 +113,12 @@ public class Model {
             Statement statement = database.getConnection().createStatement();
             statement.execute("INSERT INTO leaves VALUES (NULL, '" +
                 leaves.getStart() + "', '" + leaves.getEnd() + "', '" + leaves
-                .getReason() + "', '" + leaves.getIdEmployee() + "');");
+                .getFullDay() + "', '" + leaves.getReason() + "', '" + leaves
+                .getIdEmployee() + "');");
             statement.close();
             database.disconnect();
         } catch (SQLException e) {
-            System.out.println("");
+            System.out.println();
         }
     }
 }
