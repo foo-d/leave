@@ -54,10 +54,11 @@
                 Integer.parseInt(session.getAttribute("id").toString())
             ));
         }
-        out.print("<h3>Hello " + Controller.selectWhereEmployee(Integer.parseInt(session.getAttribute("id")
-            .toString())).getFirstName() + " " + Controller
-            .selectWhereEmployee(Integer.parseInt(session.getAttribute("id")
-            .toString())).getLastName().charAt(0) + ".</h3>");
+        out.print("<h3>Hello " + Controller.selectWhereEmployee(Integer
+            .parseInt(session.getAttribute("id").toString())).getFirstName() +
+            " " + Controller.selectWhereEmployee(Integer.parseInt(session
+            .getAttribute("id").toString())).getLastName().charAt(0) +
+            ".</h3>");
         Employee employee = Controller.selectWhereEmployee(Integer
             .parseInt(session.getAttribute("id").toString()));
         DecimalFormat decimalFormat = new DecimalFormat("#.#");
@@ -137,11 +138,11 @@
                             .split(" ")[0]).before(simpleDateFormat
                             .parse(java.time.LocalDate.now().toString()))) {
                             leaves += "<td><img src='img/grayscale.webp' styl" +
-                                "e='height: 15px'></td>";
+                                "e='height: 16px'></td>";
                         } else {
                             leaves += "<td><a href='index.jsp?action=delete&i" +
                                 "d=" + aLeaves.getId() + "'><img src='img/can" +
-                                "cel-146131_1280.webp' style='height: 15px'><" +
+                                "cel-146131_1280.webp' style='height: 16px'><" +
                                 "/a></td>";
                         }
                     } catch (java.text.ParseException e) {
@@ -176,7 +177,7 @@
                     leaves += "<td>";
                     leaves += "<a href='index.jsp'>";
                     leaves += "<img src='img/cancel-146131_1280.webp' style='" +
-                        "height: 15px'>";
+                        "height: 16px'>";
                     leaves += "</a>";
                     leaves += "</td>";
                     leaves += "<tr>";
@@ -190,11 +191,16 @@
                 } else {
                     leaves += "<tr><td colspan='5'><a href='index.jsp?action=" +
                         "add'><img src='img/plus-124-459368.webp' style='heig" +
-                        "ht: 15px'></a></td></tr>";
+                        "ht: 16px'></a></td></tr>";
                 }
                 out.print(leaves);
             %>
             </tbody>
         </table>
     </div>
+    <form action="" method="post">
+        <button name="logout" type="submit">
+            <img alt="" src="img/1024px-OOjs_UI_icon_logOut-ltr.svg.png" style="height: 16px">
+        </button>
+    </form>
 </div>

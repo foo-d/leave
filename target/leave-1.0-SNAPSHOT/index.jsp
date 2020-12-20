@@ -42,6 +42,10 @@
                     session.setAttribute("id", id);
                 }
             }
+            if (request.getParameter("logout") != null) {
+                id = null;
+                session.removeAttribute("id");
+            }
             if (session.getAttribute("id") != null) {
        %>
        <%@ include file="home.jsp" %>
