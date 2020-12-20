@@ -112,14 +112,14 @@ Cette couleur va servir à donner du relief notamment sur les boutons du site in
 Tous les textes du site internet sont de cette couleur.
 ##### Vert
 
-![color4](https://raw.githubusercontent.com/foo-d/leave/src/main/webapp/img/color4.png)
+![color4](https://raw.githubusercontent.com/foo-d/leave/blob/master/src/main/webapp/img/color4.png)
 
 Cette couleur est utilisée pour le bouton de connexion de la première page du site internet.
 ##### Bleu
 
-![color5](https://raw.githubusercontent.com/foo-d/leave/src/main/webapp/img/color5.png)
+![color5](https://raw.githubusercontent.com/foo-d/leave/blob/master/src/main/webapp/img/color5.png)
 
-![color6](https://raw.githubusercontent.com/foo-d/leave/src/main/webapp/img/color6.png)
+![color6](https://raw.githubusercontent.com/foo-d/leave/blob/master/src/main/webapp/img/color6.png)
 
 Ces deux couleurs vont être utilisées pour les headers des tableaux.
 #### Photographies
@@ -155,7 +155,7 @@ Aucun élémént n'est à conserver puisque le site internet va être créé dan
 ### Wireframe et maquettage
 #### Arborescence
 
-![arborescence](https://raw.githubusercontent.com/foo-d/leave/src/main/webapp/img/arborescence.png)
+![arborescence](https://raw.githubusercontent.com/foo-d/leave/blob/master/src/main/webapp/img/arborescence.png)
 
 #### Maquettes
 La première page du site internet est une page d'identification avec un nom, un prénom, un âge, un email, un numéro de téléphone et deux autres champs relatifs au contexte.
@@ -187,7 +187,7 @@ Il faudra également assurer sa maintenance.
 ### Le planning
 #### Diagramme de Gantt
 
-![gantt](https://raw.githubusercontent.com/foo-d/leave/src/main/webapp/img/gantt.png)
+![gantt](https://raw.githubusercontent.com/foo-d/leave/blob/master/src/main/webapp/img/gantt.png)
 
 * Date de la création et validation des maquettes : du 07/12/2020 au 10/12/2020
 * Date de la création et validation des contenus : du 10/12/2020 au 13/12/2020
