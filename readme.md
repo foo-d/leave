@@ -158,19 +158,6 @@ Aucun élémént n'est à conserver puisque le site internet va être créé dan
 ![arborescence](https://raw.githubusercontent.com/foo-d/leave/master/src/main/webapp/img/arborescence.png)
 
 #### Maquettes
-La première page du site internet est une page d'identification avec un nom, un prénom, un âge, un email, un numéro de téléphone et deux autres champs relatifs au contexte.
-
-![Web 1920 - 1](https://raw.githubusercontent.com/foo-d/satisfaction-survey/master/img/Web%201920%20%E2%80%93%201.png)
-
-Les pages 2 à 4 sont quant à elles les pages réservés aux questions qui sont posées au consommateur.
-
-![Web 1920 - 2](https://raw.githubusercontent.com/foo-d/satisfaction-survey/master/img/Web%201920%20%E2%80%93%202.png)
-
-Cette page est la dernière du site. Elle affiche un repère de représentation graphique et offre la possibilité de laisser un commentaire.
-
-De plus, il est possible de télécharger les statistiques de réponses au questionnaire au format CSV.
-
-![Web 1920 - 3](https://raw.githubusercontent.com/foo-d/satisfaction-survey/master/img/Web%201920%20%E2%80%93%203.png)
 
 ## Spécificités et livrables
 ### Le contenu du site
