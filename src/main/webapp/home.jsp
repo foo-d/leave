@@ -5,6 +5,10 @@
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.Calendar" %>
+<%@ page import="java.time.Duration" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.temporal.ChronoUnit" %>
+<%@ page import="java.time.LocalDateTime" %>
 <div id="home">
     <h2 style="color: #000000">Leave management</h2>
     <%
@@ -20,39 +24,91 @@
             .getAttribute("id") != null) {
             String start = request.getParameter("start").toString();
             String end = request.getParameter("end").toString();
-            switch (request.getParameter("fullDay").toString()) {
-                case "Yes":
-                    start += " 00:00:00";
-                    end += " 00:00:00";
-                    break;
-                case "Morning":
-                    start += " 00:00:00";
-                    end += " 12:00:00";
-                    break;
-                case "Afternoon":
-                    start += " 12:00:00";
-                    Calendar calendar = Calendar.getInstance();
-                    SimpleDateFormat simpleDateFormat =
-                        new SimpleDateFormat("yyyy-MM-dd");
-                    try {
-                        calendar.setTime(simpleDateFormat.parse(end));
-                        calendar.add(Calendar.DATE, 1);
-                        end = simpleDateFormat.format(calendar.getTime()) +
-                            " 00:00:00";
-                    } catch (java.text.ParseException e) {
-                        System.out.println("");
+            SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat simpleDateFormat0 =
+                    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            try {
+                Calendar calendar = Calendar.getInstance();
+                switch (request.getParameter("fullDay").toString()) {
+                    case "Yes":
+                        start += " 00:00:00";
+                        try {
+                            calendar.setTime(simpleDateFormat.parse(end));
+                            calendar.add(Calendar.DATE, 1);
+                            end = simpleDateFormat.format(calendar.getTime()) +
+                                " 00:00:00";
+                        } catch (java.text.ParseException e) {
+                            System.out.println("");
+                        };
+                        break;
+                    case "Morning":
+                        start += " 00:00:00";
+                        try {
+                            calendar.setTime(simpleDateFormat.parse(end));
+                            calendar.add(Calendar.DATE, 0);
+                            end = simpleDateFormat.format(calendar.getTime()) +
+                                " 12:00:00";
+                        } catch (java.text.ParseException e) {
+                            System.out.println("");
+                        }
+                        break;
+                    case "Afternoon":
+                        start += " 12:00:00";
+                        try {
+                            calendar.setTime(simpleDateFormat.parse(end));
+                            calendar.add(Calendar.DATE, 1);
+                            end = simpleDateFormat.format(calendar.getTime()) +
+                                " 00:00:00";
+                        } catch (java.text.ParseException e) {
+                            System.out.println("");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                if (simpleDateFormat0.parse(start).after(simpleDateFormat0
+                    .parse(simpleDateFormat0.format(new Date())))) {
+                    if (simpleDateFormat0.parse(start).before(simpleDateFormat0
+                            .parse(end))) {
+                        if (((simpleDateFormat0.parse(end).getTime() -
+                            simpleDateFormat0.parse(start).getTime()) /
+                            (1000 * 60 * 60)) / 24 <= Controller
+                            .selectWhereEmployee(Integer.parseInt(session
+                                .getAttribute("id").toString()))
+                            .getRemaining()) {
+                            Controller.insertLeaves(new Leaves(
+                                start,
+                                end,
+                                request.getParameter("fullDay").toString(),
+                                request.getParameter("reason").toString(),
+                                Integer.parseInt(session.getAttribute("id")
+                                    .toString())
+                            ));
+                        } else {
+                            out.print("<div style='background-color: #ff8080;" +
+                                " padding: 15px; width: 75%'>Error in adding " +
+                                "leave, check that you have a sufficient numb" +
+                                "er of remaining leaves.</div>");
+                        }
+                    } else {
+                        out.print("<div style='background-color: #ff8080; pad" +
+                            "ding: 15px; width: 75%'>Error in adding the leav" +
+                            "e, verify that the end date of the leave is grea" +
+                            "ter than the start date.</div>");
                     }
-                    break;
-                default:
-                    break;
+                } else {
+                    out.print("<div style='background-color: #ff8080; padding" +
+                        ": 15px; width: 75%'>Error in the addition of the lea" +
+                        "ve, check that the start date of the leave is not in" +
+                        " the past.</div>");
+                }
+            } catch (java.text.ParseException e) {
+                out.print("<div style='background-color: #ff8080; padding: 15" +
+                    "px; width: 75%'>Error in adding the leave, the dates ent" +
+                    "ered are invalid</div>");
+                System.out.println("");
             }
-            Controller.insertLeaves(new Leaves(
-                start,
-                end,
-                request.getParameter("fullDay").toString(),
-                request.getParameter("reason").toString(),
-                Integer.parseInt(session.getAttribute("id").toString())
-            ));
         }
         out.print("<h3>Hello " + Controller.selectWhereEmployee(Integer
             .parseInt(session.getAttribute("id").toString())).getFirstName() +
@@ -123,7 +179,9 @@
                     try {
                         calendar.setTime(simpleDateFormat.parse(aLeaves
                             .getEnd()));
-                        calendar.add(Calendar.DATE, -1);
+                        if (!aLeaves.getFullDay().equals("Morning")) {
+                            calendar.add(Calendar.DATE, -1);
+                        }
                         end = simpleDateFormat.format(calendar.getTime())
                             .split("-");
                     } catch (java.text.ParseException e) {
